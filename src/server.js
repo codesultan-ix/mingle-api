@@ -15,9 +15,9 @@ const app = runApp();
     });
   }
 // for Heroku
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-  }
+  // if (process.env.NODE_ENV === 'production') {
+  //   app.use(express.static('client/build'));
+  // }
   // Cloudinary Setup
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
