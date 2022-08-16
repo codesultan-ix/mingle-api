@@ -1,0 +1,39 @@
+{
+  "name": "social-media-api",
+  "version": "1.1.0",
+  "description": "An open-source RESTful API developed using NodeJS, ExpressJS and MongoDB helps you to integrate User Authentication and Social Media Post Management in your application with ease.",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js"
+  },
+  "author": "Nikhil Rajput",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cloudinary": "^1.29.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1",
+    "multer": "^1.4.4",
+    "node-cron": "^3.0.0",
+    "nodemailer": "^6.7.8",
+    "otp-generator": "^4.0.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "engines": {
+    "node": ">=14.x",
+    "pnpm": ">=7.x",
+    "npm": ">=8.x"
+  }
+}
