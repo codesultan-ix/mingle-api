@@ -34,7 +34,7 @@ const getUserDetails = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("user not found", 404));
   }
 
-  user.populate({
+  await user.populate({
     path: "posts",
     model: "Post",
     select: ["-__v"],

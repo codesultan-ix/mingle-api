@@ -11,7 +11,7 @@ const register = catchAsyncError(async (req, res, next) => {
 
   // Input Validation
   if (!fname) {
-    return next(new ErrorHandler("please enter your first name", 400));
+    return next(new ErrorHandler("first name is required", 400));
   }
 
   if (String(fname).length < 3) {
@@ -21,19 +21,19 @@ const register = catchAsyncError(async (req, res, next) => {
   }
 
   if (!lname) {
-    return next(new ErrorHandler("please enter your last name", 400));
+    return next(new ErrorHandler("last name is required", 400));
   }
 
   if (!email) {
-    return next(new ErrorHandler("please enter your email", 400));
+    return next(new ErrorHandler("email is required", 400));
   }
 
   if (email && !validators.validateEmail(email)) {
-    return next(new ErrorHandler("please enter a valid email address", 400));
+    return next(new ErrorHandler("email is invalid", 400));
   }
 
   if (!uname) {
-    return next(new ErrorHandler("please enter an username", 400));
+    return next(new ErrorHandler("username is required", 400));
   }
 
   if (String(uname).length < 3) {
@@ -42,22 +42,22 @@ const register = catchAsyncError(async (req, res, next) => {
     );
   }
 
-  if (String(uname).length > 20) {
+  if (String(uname).length > 15) {
     return next(
-      new ErrorHandler("username must not exceeds 20 characters", 400)
+      new ErrorHandler("username must not exceeds 15 characters", 400)
     );
   }
 
   if (uname && !validators.validateUsername(uname)) {
-    return next(new ErrorHandler("please enter a valid username", 400));
+    return next(new ErrorHandler("username is invalid", 400));
   }
 
   if (!password) {
-    return next(new ErrorHandler("please enter a password", 400));
+    return next(new ErrorHandler("password is required", 400));
   }
 
   if (!confirmPassword) {
-    return next(new ErrorHandler("please enter the password again", 400));
+    return next(new ErrorHandler("confirm password is required", 400));
   }
 
   if (uname) {
@@ -88,20 +88,31 @@ const register = catchAsyncError(async (req, res, next) => {
     password,
   });
 
-  await user.generateToken();
-  await user.save();
+  // await user.generateToken();
+  // await user.save();
 
-  const htmlMessage = `<p>Hello ${user.fname},</p>
-      <h2>Welcome to NixLab Technologies.</h2>
-      <p>We're glad you're here!</p>
-      <p>This is a auto-generated email. Please do not reply to this email.</p>
-      <p>Regards, <br>
-      NixLab Technologies Team</p>`;
+  const htmlMessage = `<p>Hi ${user.fname},</p>
+  <p>
+    Thank you so much for creating an account with us. We're glad you're here!
+  </p>
+  <p>
+    To learn more about our product and services, visit our website
+    <a href="https://nixlab.co.in" target="_blank">here</a>.
+  </p>
+  <p>
+    If you have any questions, feel free to contact us at
+    <a href="mailto:nixlab.in@gmail.com" target="_blank">nixlab.in@gmail.com</a>.
+  </p>
+  <p>This is a auto-generated email. Please do not reply to this email.</p>
+  <p>
+    Regards, <br />
+    NixLab Technologies Team
+  </p>`;
 
   try {
     await utility.sendEmail({
       email: user.email,
-      subject: `Welcome to NixLab Technologies`,
+      subject: `Welcome to NixLab Technologies!`,
       htmlMessage: htmlMessage,
     });
   } catch (err) {

@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import compression from "compression";
@@ -36,7 +37,7 @@ export const runApp = () => {
   app.route("/").get(function (req, res) {
     res.status(200).json({
       success: true,
-      message: "Server is up and running...",
+      message: "server is up and running",
     });
   });
 
@@ -49,7 +50,7 @@ export const closeApp = (app) => {
   app.use("*", (req, res, next) => {
     res.status(404).json({
       success: false,
-      message: "API endpoint not found.",
+      message: "api endpoint not found",
     });
   });
 };
