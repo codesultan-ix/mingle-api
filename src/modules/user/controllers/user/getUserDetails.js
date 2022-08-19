@@ -37,6 +37,7 @@ const getUserDetails = catchAsyncError(async (req, res, next) => {
   user.populate({
     path: "posts",
     model: "Post",
+    select: ["-__v"],
     populate: [
       {
         path: "owner",
