@@ -3,6 +3,7 @@ import models from "../../../models/index.js";
 import catchAsyncError from "../../../helpers/catchAsyncError.js";
 /// Get New Chats///
 const Chat = models.Chat;
+const User = models.User;
 const getNewChats = catchAsyncError(async (req, res) => {
   console.log("reqqqq=", req.user._id)
   Chat.find({ $and: [{ to: req.user._id }, { isStored: false }] })

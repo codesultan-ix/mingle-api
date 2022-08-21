@@ -3,6 +3,7 @@ import models from "../../../models/index.js";
 import catchAsyncError from "../../../helpers/catchAsyncError.js";
 /// Get All Callss///
 const Call = models.Call;
+const User = models.User;
 const getAllCalls =  catchAsyncError(async (req, res) => {
   console.log("reqqqq=", req.user._id)
   Call.find({ $or: [{ sender: req.user._id }, { receiver: req.user._id }] })
