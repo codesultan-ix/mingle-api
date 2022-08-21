@@ -2,6 +2,7 @@ import authModule from "./modules/auth/index.js";
 import userModule from "./modules/user/index.js";
 import adminModule from "./modules/admin/index.js";
 import postModule from "./modules/post/index.js";
+import chatModule from "./modules/chat/index.js";
 import notificationModule from "./modules/notification/index.js";
 
 const initModules = (app) => {
@@ -9,6 +10,7 @@ const initModules = (app) => {
   userModule.init(app);
   adminModule.init(app);
   postModule.init(app);
+  chatModule.init(app);
   notificationModule.init(app);
 };
 

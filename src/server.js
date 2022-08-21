@@ -100,4 +100,10 @@ const app = runApp();
   };
 
   connectToDatabase();
+
+
+  //sockets
+// const socketio=require('socket.io')
+
+
 })();

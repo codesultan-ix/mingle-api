@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     minlength: [3, "Username must be at least 3 characters."],
     maxlength: [20, "Username must not exceeds 20 characters."],
   },
-
+  number: {type : String , unique : true, required : true},
   phone: {
     countryCode: String,
     phoneNo: String,
@@ -49,12 +49,23 @@ const userSchema = new mongoose.Schema({
     minlength: [6, "password must be at least 6 characters."],
     select: false,
   },
-
+  // password: {type : String},
+  // for message encryption
+  status:{
+    type:String,
+    default:"Hey there! I am using Cypher."   
+  },
+  publicKey: {type : String},
+  privateKey: {type: String},
+  hashedPass: {type : String},
   avatar: {
     public_id: String,
     url: String,
   },
-
+  profile_pic:{
+    type:String,
+    default:"https://drgsearch.com/wp-content/uploads/2020/01/no-photo.png" 
+  },
   gender: String,
 
   dob: String,
@@ -124,9 +135,19 @@ const userSchema = new mongoose.Schema({
     ref: "OTP",
   },
 
+
+  tokens:[{
+    token:{
+        type:String,
+        required:true
+    }
+  }],
+
   token: String,
   expiresAt: Number,
 
+  resetPasswordOTP:{type:Number},
+  resetPasswordReq:{type:Boolean, default:false},
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 
