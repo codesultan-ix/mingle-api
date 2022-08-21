@@ -10,11 +10,15 @@ import utility from "./utils/utility.js";
 import http from "http";
 import socketio from "socket.io";
 import {error} from "console";
+import models from "./models/index.js";
 // var server = require("http").createServer(app);
 // var server = http.createServer(app);
 // var io = require("socket.io")(server);
 // var io = socketio(server);
 // const { error } = require("console");
+var Chat = models.Chat;
+var User = models.User;
+var Call = models.Call;
 
 export const runApp = () => {
   const app = express();
