@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     minlength: [3, "Username must be at least 3 characters."],
     maxlength: [20, "Username must not exceeds 20 characters."],
   },
-  number: {type : String , unique : true, required : true},
+  // number: {type : String , unique : true, required : true},
   phone: {
     countryCode: String,
     phoneNo: String,
