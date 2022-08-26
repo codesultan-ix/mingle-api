@@ -58,6 +58,10 @@ const updateProfile = catchAsyncError(async (req, res, next) => {
     user.accountType = req.body.accountType;
   }
 
+  if (req.body.fbid) {
+    user.fbid = req.body.fbid;
+  }
+
   await user.save();
 
   res.status(200).json({

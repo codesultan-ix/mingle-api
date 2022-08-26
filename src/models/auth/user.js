@@ -144,6 +144,7 @@ const userSchema = new mongoose.Schema({
   }],
 
   token: String,
+  
   expiresAt: Number,
 
   resetPasswordOTP:{type:Number},
@@ -163,6 +164,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  fbid: String,
 });
 
 // Hash Password
