@@ -27,6 +27,7 @@ const getRecommendedUsers = catchAsyncError(async (req, res, next) => {
       accountStatus: 1,
       isVerified: 1,
       createdAt: 1,
+      fbid:1
     }
   ).sort({ _id: 1, createdAt: -1 });
 
