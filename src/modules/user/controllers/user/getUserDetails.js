@@ -28,6 +28,7 @@ const getUserDetails = catchAsyncError(async (req, res, next) => {
     accountStatus: 1,
     isVerified: 1,
     createdAt: 1,
+    fbid,
   });
 
   if (!user) {
