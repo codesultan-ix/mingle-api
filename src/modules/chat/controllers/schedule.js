@@ -1,6 +1,6 @@
 
 import models from "../../../models/index.js";
-import catchAsyncError from "../../../helpers/catchAsyncError.js";
+import catchAsyncError from "../../../Helpers/catchAsyncError.js";
 // const mongoose = require("mongoose");
 import mongoose from "mongoose";
 import moment from "moment-timezone";

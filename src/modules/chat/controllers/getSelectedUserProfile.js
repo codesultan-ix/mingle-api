@@ -1,6 +1,6 @@
 
 import models from "../../../models/index.js";
-import catchAsyncError from "../../../helpers/catchAsyncError.js";
+import catchAsyncError from "../../../Helpers/catchAsyncError.js";
 /// Get All Chats///
 const User = models.User;
 const getSelectedUserProfile = catchAsyncError(async (req, res) => {

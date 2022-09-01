@@ -1,6 +1,6 @@
 // import jwt from "jsonwebtoken";
-// import catchAsyncError from "../../../../helpers/catchAsyncError.js";
-// import ErrorHandler from "../../../../helpers/errorHandler.js";
+// import catchAsyncError from "../../../../Helpers/catchAsyncError.js";
+// import ErrorHandler from "../../../../Helpers/errorHandler.js";
 // import models from "../../../../models/index.js";
 // import validators from "../../../../utils/validators.js";
 // import utility from "../../../../utils/utility.js";
@@ -67,8 +67,8 @@
 
 // export default login;
 import jwt from "jsonwebtoken";
-// import catchAsyncError from "../../../../helpers/catchAsyncError.js";
-import ErrorHandler from "../../../../helpers/errorHandler.js";
+// import catchAsyncError from "../../../../Helpers/catchAsyncError.js";
+import ErrorHandler from "../../../../Helpers/errorHandler.js";
 import models from "../../../../models/index.js";
 import validators from "../../../../utils/validators.js";
 import utility from "../../../../utils/utility.js";

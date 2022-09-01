@@ -1,6 +1,6 @@
 
 import models from "../../../models/index.js";
-import catchAsyncError from "../../../helpers/catchAsyncError.js";
+import catchAsyncError from "../../../Helpers/catchAsyncError.js";
 /// set seen///
 const Chat = models.Chat;
 const setSeen = catchAsyncError(async (req, res) => {

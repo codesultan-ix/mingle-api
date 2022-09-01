@@ -1,4 +1,4 @@
-import catchAsyncError from "../../../../helpers/catchAsyncError.js";
+import catchAsyncError from "../../../../Helpers/catchAsyncError.js";
 import models from "../../../../models/index.js";
 
 /// DELETE PROFILE ///

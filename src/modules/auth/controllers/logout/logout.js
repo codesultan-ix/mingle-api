@@ -1,5 +1,5 @@
-import catchAsyncError from "../../../../helpers/catchAsyncError.js";
-import ErrorHandler from "../../../../helpers/errorHandler.js";
+import catchAsyncError from "../../../../Helpers/catchAsyncError.js";
+import ErrorHandler from "../../../../Helpers/errorHandler.js";
 import models from "../../../../models/index.js";
 
 /// LOGOUT ///
