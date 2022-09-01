@@ -1,10 +1,17 @@
-import notificationRouter from "./routes/index.js";
+import { Router } from "express";
+import authMiddleware from "../../../middlewares/auth.js";
+import notificationController from "../controllers/index.js";
 
-const notificationModule = {
-  init: (app) => {
-    app.use("/api/v1", notificationRouter);
-    console.log("[module]: notification module loaded");
-  },
-};
+const notificationRouter = Router();
 
-export default notificationModule;
+const isAuthenticatedUser = authMiddleware.isAuthenticatedUser;
+
+notificationRouter
+  .route("/get-notifications")
+  .get(isAuthenticatedUser, notificationController.getNotifications);
+
+notificationRouter
+  .route("/mark-read-notification")
+  .get(isAuthenticatedUser, notificationController.markReadNotification);
+
+export default notificationRouter;
