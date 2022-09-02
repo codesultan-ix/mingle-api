@@ -1,6 +1,6 @@
 
 import models from "../../../models/index.js";
-import catchAsyncError from "../../../Helpers/catchAsyncError.js";
+import catchAsyncError from "../../../helpers/catchAsyncError.js";
 /// Get All Chats///
 const Chat = models.Chat;
 const User = models.User;

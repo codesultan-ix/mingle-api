@@ -1,6 +1,6 @@
 
 import models from "../../../models/index.js";
-import catchAsyncError from "../../../Helpers/catchAsyncError.js";
+import catchAsyncError from "../../../helpers/catchAsyncError.js";
 /// Get All Callss///
 const Call = models.Call;
 const User = models.User;

@@ -1,6 +1,6 @@
 
 import models from "../../../../models/index.js";
-import catchAsyncError from "../../../Helpers/catchAsyncError.js";
+import catchAsyncError from "../../../helpers/catchAsyncError.js";
 // import nodemailer from "nodemailer";
 /// Get All Chats///
 const OTP = models.ChatOTP;
