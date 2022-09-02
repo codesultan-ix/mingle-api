@@ -67,7 +67,7 @@
 
 // export default login;
 import jwt from "jsonwebtoken";
-import catchAsyncError from "../../../../catchAsyncError.js";
+import catchAsyncError from "../../../../helpers/catchAsyncError.js";
 import ErrorHandler from "../../../../helpers/errorHandler.js";
 import models from "../../../../models/index.js";
 import validators from "../../../../utils/validators.js";
