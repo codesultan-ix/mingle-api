@@ -3,7 +3,6 @@ import ErrorHandler from "../../../../helpers/errorHandler.js";
 import models from "../../../../models/index.js";
 
 /// DELETE COMMENT ///
-
 const deleteComment = catchAsyncError(async (req, res, next) => {
   if (!req.query.id) {
     return next(

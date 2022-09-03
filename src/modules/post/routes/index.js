@@ -12,9 +12,16 @@ const isAuthenticatedUser = authMiddleware.isAuthenticatedUser;
 postRouter
   .route("/create-post")
   .post(
+    isAuthenticatedUser,
+    postController.createPost
+  );
+
+postRouter
+  .route("/create-upload-post")
+  .post(
     multerMiddleware.array("mediaFiles"),
     isAuthenticatedUser,
-    postController.createNewPost
+    postController.createUploadPost
   );
 
 postRouter
@@ -24,6 +31,10 @@ postRouter
 postRouter
   .route("/like-post")
   .get(isAuthenticatedUser, postController.likeUnlikePost);
+
+postRouter
+  .route('/get-post-liked-users')
+  .get(isAuthenticatedUser, postController.getLikedUsers);
 
 postRouter
   .route("/post")

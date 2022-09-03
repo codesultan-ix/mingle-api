@@ -7,22 +7,10 @@ const getLikedUsers = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("please enter user id in query params", 400));
     }
 
-    const post = await models.Post.findById(req.query.id).select("likes")
-        .populate("likes.likedBy", [
-            "_id",
-            "fname",
-            "lname",
-            "email",
-            "uname",
-            "avatar",
-            "profession",
-            "accountType",
-            "accountStatus",
-            "isVerified",
-        ])
+    const post = await models.Post.findById(req.query.id).select("_id likes")
         .sort({
             createdAt: -1,
-        });;
+        });
 
     if (!post) {
         return next(new ErrorHandler("post not found", 404));
@@ -74,7 +62,39 @@ const getLikedUsers = catchAsyncError(async (req, res, next) => {
         nextPage = `${baseUrl}?page=${nextPageIndex}&limit=${limit}`;
     }
 
-    const results = postLikes.slice(skip, skip + limit);
+    const slicedPostLikers = postLikes.slice(skip, skip + limit);
+
+    const results = [];
+
+    for (let i = 0; i < slicedPostLikers.length; i++) {
+        const postLiker = slicedPostLikers[i];
+        const postLikerData = await models.User.findById(postLiker.likedBy)
+            .select([
+                "_id", "fname", "lname", "email", "uname", "avatar", "profession",
+                "accountPrivacy", "accountStatus", "isVerified", "createdAt",
+            ]);
+
+        const followingStatus = await utility.getFollowingStatus(req.user, postLikerData._id);
+
+        results.push({
+            _id: postLiker._id,
+            likedBy: {
+                _id: postLikerData._id,
+                fname: postLikerData.fname,
+                lname: postLikerData.lname,
+                email: postLikerData.email,
+                uname: postLikerData.uname,
+                avatar: postLikerData.avatar,
+                followingStatus: followingStatus,
+                profession: postLikerData.profession,
+                accountPrivacy: postLikerData.accountPrivacy,
+                accountStatus: postLikerData.accountStatus,
+                isVerified: postLikerData.isVerified,
+                createdAt: postLikerData.createdAt,
+            },
+            likedAt: postLiker.likedAt,
+        });
+    }
 
     res.status(200).json({
         success: true,

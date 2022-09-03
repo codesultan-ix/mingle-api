@@ -38,6 +38,15 @@ ResponseMessages.PASSWORDS_DO_NOT_MATCH = 'Passwords do not match';
 ResponseMessages.EMAIL_ALREADY_USED = 'Email already used';
 ResponseMessages.USERNAME_ALREADY_USED = 'Username already used';
 ResponseMessages.ACCOUNT_ALREADY_EXISTS = 'Account already exists with this email';
+ResponseMessages.ACCOUNT_NOT_FOUND = 'Account not found';
+ResponseMessages.ACCOUNT_NOT_VERIFIED = 'Account not verified';
+ResponseMessages.ACCOUNT_ALREADY_VERIFIED = 'Account already verified';
+ResponseMessages.CANNOT_FOLLOW_YOURSELF = 'You cannot follow yourself';
+
+ResponseMessages.ACCOUNT_SUPERADMIN = 'Superadmin account';
+ResponseMessages.ACCOUNT_ADMIN = 'Admin account';
+ResponseMessages.ACCOUNT_USER = 'User account';
+ResponseMessages.ACCOUNT_MODERATOR = 'Moderator account';
 
 /// Invalid Response Messages
 ResponseMessages.INVALID_FIRST_NAME_LENGTH = 'First name must be at least 3 characters';

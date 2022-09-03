@@ -58,6 +58,7 @@ const postSchema = new mongoose.Schema({
     {
       public_id: String,
       url: String,
+      thumbnail: String,
       mediaType: String,
     }
   ],
@@ -69,10 +70,22 @@ const postSchema = new mongoose.Schema({
 
   likes: [
     {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
+      likedBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+
+      likedAt: {
+        type: Date,
+        default: Date.now,
+      },
+    }
   ],
+
+  likesCount: {
+    type: Number,
+    default: 0,
+  },
 
   comments: [
     {
@@ -81,9 +94,20 @@ const postSchema = new mongoose.Schema({
     },
   ],
 
+  commentsCount: {
+    type: Number,
+    default: 0,
+  },
+
   postStatus: {
     type: String,
-    enum: ["active", "deleted", "reported", "drafted"],
+    enum: [
+      "active", "deleted", "reported", "archived",
+      "unarhived", "withheld", "pending", "published",
+      "unpublished", "rejected", "approved", "blocked",
+      "banned", "muted", "verified", "unverified",
+      "flagged", "hidden", "removed",
+    ],
     default: "active",
   },
 
