@@ -5,7 +5,7 @@ import searchUser from "./user/searchUser.js";
 import updateUserRole from "./user/updateUserRole.js";
 import getUserDetails from "./user/getUserDetails.js";
 import getAllPosts from "./post/getAllPosts.js";
-import updateVerificationStatus from "./user/updateVerificationStatus.js ";
+import updateVerificationStatus from "./user/updateVerificationStatus.js";
 
 const adminController = {};
 
