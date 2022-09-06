@@ -167,7 +167,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-
+  
+  isValid: {
+    type: Boolean,
+    default: false,
+  },
   // accountType: {
   //   type: String,
   //   enum: ["public", "private"],
