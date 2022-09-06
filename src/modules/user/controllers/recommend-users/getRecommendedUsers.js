@@ -1,5 +1,6 @@
 import catchAsyncError from "../../../../helpers/catchAsyncError.js";
 import models from "../../../../models/index.js";
+import utility from "../../../../utils/utility.js";
 
 /// GET RECOMMENDED USERS ///
 
@@ -7,7 +8,7 @@ const getRecommendedUsers = catchAsyncError(async (req, res, next) => {
   const userId = req.user._id;
 
   let currentPage = parseInt(req.query.page) || 1;
-  let limit = parseInt(req.query.limit) || 10;
+  let limit = parseInt(req.query.limit) || 15;
 
   const users = await models.User.find(
     {
@@ -15,21 +16,7 @@ const getRecommendedUsers = catchAsyncError(async (req, res, next) => {
         $nin: [userId],
       },
     },
-    {
-      _id: 1,
-      fname: 1,
-      lname: 1,
-      email: 1,
-      uname: 1,
-      avatar: 1,
-      profession: 1,
-      accountType: 1,
-      accountStatus: 1,
-      isVerified: 1,
-      createdAt: 1,
-      fbid:1
-    }
-  ).sort({ _id: 1, createdAt: -1 });
+  ).select("_id").sort({ createdAt: -1 });
 
   let totalUsers = users.length;
   let totalPages = Math.ceil(totalUsers / limit);
@@ -61,9 +48,8 @@ const getRecommendedUsers = catchAsyncError(async (req, res, next) => {
     hasPrevPage = true;
   }
 
-  const baseUrl = `${req.protocol}://${req.get("host")}${
-    req.originalUrl
-  }`.split("?")[0];
+  const baseUrl = `${req.protocol}://${req.get("host")}${req.originalUrl
+    }`.split("?")[0];
 
   if (hasPrevPage) {
     prevPage = `${baseUrl}?page=${prevPageIndex}&limit=${limit}`;
@@ -73,7 +59,35 @@ const getRecommendedUsers = catchAsyncError(async (req, res, next) => {
     nextPage = `${baseUrl}?page=${nextPageIndex}&limit=${limit}`;
   }
 
-  const results = users.slice(skip, skip + limit);
+  const slicedUsers = users.slice(skip, skip + limit);
+
+  const results = [];
+
+  for (let i = 0; i < slicedUsers.length; i++) {
+    const user = slicedUsers[i];
+    const userData = await models.User.findById(user._id)
+      .select([
+        "_id", "fname", "lname", "email", "uname", "avatar", "profession",
+        "accountPrivacy", "accountStatus", "isVerified", "createdAt",
+      ]);
+
+    const followingStatus = await utility.getFollowingStatus(req.user, userData._id);
+
+    results.push({
+      _id: userData._id,
+      fname: userData.fname,
+      lname: userData.lname,
+      email: userData.email,
+      uname: userData.uname,
+      avatar: userData.avatar,
+      followingStatus: followingStatus,
+      profession: userData.profession,
+      accountPrivacy: userData.accountPrivacy,
+      accountStatus: userData.accountStatus,
+      isVerified: userData.isVerified,
+      createdAt: userData.createdAt,
+    });
+  }
 
   res.status(200).json({
     success: true,
